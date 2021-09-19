@@ -5,3 +5,5 @@ potochniyRik = int (input("Поточний рік: "))
 age = potochniyRik - rikNarodzhenya 
 if age >= 18:
     print (name + " " + surname + " ви повнолітній")
+else: 
+    print (" ви неповнолітній")
