@@ -6,4 +6,4 @@ age = potochniyRik - rikNarodzhenya
 if age >= 18:
     print (name + " " + surname + " є повнолітнітнім(ньою)")
 else: 
-    print (" є неповнолітнім(ньою)")
+    print (name + " " + surname + " є неповнолітнім(ньою)")
