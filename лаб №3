@@ -1,0 +1,51 @@
+ import random
+score = 0
+hero_name = input('Введите имя своего героя: ')
+hero_dmg = random.randint(10, 30)
+hero_hp = 1000
+start_hero_hp = hero_hp
+enemy_name = 'Скелет'
+enemy_dmg = random.randint(15, 30)
+enemy_hp = random.randint(50, 70)
+start_enemy_hp = enemy_hp
+sec_enemy_name = 'Огр'
+sec_enemy_dmg = random.randint(30, 35)
+sec_enemy_hp = random.randint(80, 100)
+start_sec_enemy_hp = sec_enemy_hp
+print(f'Admin: {hero_name}, добро пожаловать на арену!')
+print(f'Admin: Твой первый противник - {enemy_name}. {enemy_name} ХП: {enemy_hp}, {enemy_name} Урон: {enemy_dmg}')
+print(f'Admin: Второй противник - {sec_enemy_name}. {sec_enemy_name} ХП: {sec_enemy_hp}, {sec_enemy_name} Урон: {sec_enemy_dmg}')
+print('Admin: Да начнётся битва!')
+# 1 - Ударить противника, 2 - Полечиться
+while hero_hp > 0 and enemy_hp > 0 and sec_enemy_hp > 0:
+    # Hero Turn
+    user_choice = int(input(f'{hero_name}: Что делать?\n1 - Атаковать {enemy_name}\n2 - Атаковать {sec_enemy_name}\n3 - Атаковать обоих противников\n4 - Использовать исцеляющее зелье'))
+    if user_choice == 1:
+        hero_dmg_temp = random.randint(10, 30)
+        enemy_hp -= hero_dmg_temp
+        print(f'Мир: {hero_name} нанес {enemy_name} {hero_dmg_temp} урона. {enemy_name} HP: {enemy_hp} / {start_enemy_hp}')
+    elif user_choice == 2:
+        hero_dmg_temp = random.randint(10, 30)
+        sec_enemy_hp -= hero_dmg_temp
+        print(f'{hero_name} нанес {sec_enemy_name} {hero_dmg_temp} урона. {sec_enemy_name} HP: {sec_enemy_hp} / {start_sec_enemy_hp}')
+    elif user_choice == 3:
+        hero_dmg_temp = random.randint(10, 30)
+        enemy_hp -= int(hero_dmg_temp)
+        sec_enemy_hp -= int(hero_dmg_temp)
+        print(f'Мир: {hero_name} нанес {enemy_name} и {sec_enemy_name} {hero_dmg_temp//2} урона. Первый противник ХП: {enemy_dmg} / {start_enemy_hp}, Второй противник ХП: {sec_enemy_hp} / {start_sec_enemy_hp}')
+    elif user_choice == 4:
+        hero_hp += random.randint(15, 25)
+        print(f'Мир: {hero_name} восстановил 10 единиц здоровья! {hero_name} HP {hero_hp} / {start_hero_hp}')
+    # Ход противника
+    if enemy_hp > 0:
+        hero_hp -= enemy_dmg
+        print(f'Мир: {enemy_name} нанес {hero_name} {enemy_dmg} урона! {hero_name} HP: {hero_hp} / {start_hero_hp}')
+    if sec_enemy_hp > 0:
+        hero_hp -= sec_enemy_dmg
+        print(f'Мир: {sec_enemy_name} нанес {hero_name} {sec_enemy_dmg} урона! {hero_name} HP: {hero_hp} / {start_hero_hp}')
+if hero_hp > 0 and enemy_hp <= 0 and sec_enemy_hp <= 0:
+    print(f"Ты победил! Твой счёт {score}")
+    print("Готовься, скоро прибудут новые противники!")
+    score += 1
+else:
+    print('Ты проиграл.')
